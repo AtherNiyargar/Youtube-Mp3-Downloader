@@ -3,7 +3,6 @@ import ffmpeg
 import os
 
 class Backend:
-
     title = ""
     def __init__(self, url):
         self.url = url
@@ -15,12 +14,11 @@ class Backend:
     def downloader(self, title):
         options = {
             'format' : 'bestaudio/bestaudio',
-            'outtmpl' : './youtube_mp3s/%(title)s.%(ext)s'
+            'outtmpl' : './youtube_mp3s/abc.%(ext)s'
         }
         yt_dlp.YoutubeDL(options).download([self.url])
         
-        input_file = f"./youtube_mp3s/{title}.webm"
-        print(title+".webm")
+        input_file = "./youtube_mp3s/abc.webm"
         output_file = f"./youtube_mp3s/{title}.mp3"
         try:
             (
@@ -33,8 +31,4 @@ class Backend:
         except:
             print(f"An error occurred!")
         finally:
-            os.remove(f"./youtube_mp3s/{title}.webm")
-            
-if __name__ == "__main__":
-    backend = Backend("https://youtu.be/yKNxeF4KMsY?feature=shared")
-    print(backend.title_provider())
+            os.remove(f"./youtube_mp3s/abc.webm")
